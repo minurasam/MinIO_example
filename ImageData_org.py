@@ -1,7 +1,3 @@
-"""
-Dataset organization script.
-This script was inspired by similar code on this neat blog post: https://blog.paperspace.com/train-yolov5-custom-data/
-"""
 from sklearn.model_selection import train_test_split
 import os
 import shutil
@@ -15,7 +11,7 @@ def move_files_to_folder(files_list, destination_path):
             assert False
 
 print("This script assumes you have collected all your sample images into a directory images/")
-print("It also assumes you have collected all your YOLO-format annotation .txt files into a directory annotations/")
+print("It also assumes you have collected all your formatted annotation .txt files into a directory annotations/")
 
 # Read images and annotations
 images = [os.path.join('images', x) for x in os.listdir('images')]
@@ -35,6 +31,7 @@ val_images, test_images, val_annotations, test_annotations = train_test_split(va
 move_files_to_folder(train_images, 'images/train/')
 move_files_to_folder(val_images, 'images/val/')
 move_files_to_folder(test_images, 'images/test/')
+
 # Move the annotation splits into their corresponding folders
 move_files_to_folder(train_annotations, 'annotations/train/')
 move_files_to_folder(val_annotations, 'annotations/val/')
